@@ -44,7 +44,7 @@ class Agent:
                 if self.compare(i):
                     same_neighbor += 1
         if occupied == 0:
-            return True
+            return False
         return (same_neighbor / occupied) >= self.threshold
 
 
@@ -80,7 +80,7 @@ class Agent:
             if neighbors:
                 score = same / len(neighbors)  
             else: 
-                return 0 # calculate score based on surrounding neighbors
+                return None# calculate score based on surrounding neighbors
 
             if score > best_score:
                 best_score = score
@@ -99,7 +99,8 @@ class Agent:
     '''
 
     def update_move_agent(self):
-        new_spot = self.choose_neighbor() # updated logic for new_spot where agent "chooses" cell 
+        empty_cells = self.city.get_empty_cells()
+        new_spot = self.choose_neighbor(empty_cells) # updated logic for new_spot where agent "chooses" cell 
         if new_spot is not None:
             new_x, new_y = new_spot
             self.city.move_agent(self, new_x, new_y)

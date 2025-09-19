@@ -49,7 +49,7 @@ class Agent():
 					same_neighbor += 1
 
 		if occupied == 0:
-			return True
+			return False
 		
 		return (same_neighbor / occupied) >= self.threshold
 

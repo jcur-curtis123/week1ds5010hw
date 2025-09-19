@@ -124,9 +124,23 @@ class City:
         agent.y = new_y
         self.agent = agent
 
-        self.grid[new_x][new_y] = agent
+        self.grid[new_x][new_y] = agent 
         
+    '''
+    added this method for update_move_agent in Agent.py. When is_satisfied bug was fixed, this caused an error in the update_move_agent method. 
+    
+    this is a simple method that just takes all empty cells in our grid and appends to a list called empty
 
+    get_empty_cells is used and assigned to a var in update_move_agent, this way, the choose_neighbor method can use empty cells as a potential neighbor
+
+    '''
+    def get_empty_cells(self):
+        empty = []
+        for i in range(self.height):
+            for j in range(self.width):
+                if self.grid[i][j] is None:
+                    empty.append((i, j))
+        return empty # return the empty list post iteration
 
     
     '''
